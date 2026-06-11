@@ -1,0 +1,6 @@
+{
+  "name": "WaveWeaver",
+  "description": "An interactive cinematic sound effect generation platform featuring micro-synthesizers, local persistence, credit management, and beautiful animated fluid backgrounds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

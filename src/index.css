@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-aurora-purple: #6442D6;
+  --color-aurora-magenta: #EC4899;
+  --color-aurora-teal: #14B8A6;
+  --color-aurora-red: #EF4444;
+}
+
+body {
+  background-color: #F8FAFC;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom transitions and scroll effects */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, filter 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(1.05);
+}
+
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scroll animation support */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-scroll {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Custom slider style */
+input[type="range"]::-webkit-slider-thumb {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  border: 2px solid white;
+}
+
+/* ==========================================
+   Dark Mode Visual Theme Overrides (when body.dark-mode is active)
+   ========================================== */
+body.dark-mode {
+  background: #000000 !important; /* Pure black base background as requested */
+  color: #F8FAFC !important;
+  transition: background-color 0.5s ease-in-out;
+}
+
+body.dark-mode .generator-card,
+body.dark-mode .credit-badge,
+body.dark-mode .sound-bubble,
+body.dark-mode .history-item {
+  background: rgba(18, 18, 18, 0.78) !important; /* Elegant grayscale custom-tinted card back */
+  backdrop-filter: blur(12px) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important; /* Grayscale layout border */
+  color: #F8FAFC !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.dark-mode .prompt-input {
+  background: #121212 !important; /* Hexadecimal dark gray / near black */
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Global text overrides for flawless dark mode contrast */
+body.dark-mode .text-slate-950,
+body.dark-mode .text-slate-900,
+body.dark-mode .text-slate-850,
+body.dark-mode .text-slate-800,
+body.dark-mode .text-slate-700,
+body.dark-mode .text-indigo-950,
+body.dark-mode .text-indigo-900,
+body.dark-mode .text-indigo-850,
+body.dark-mode .text-indigo-800,
+body.dark-mode .text-purple-850,
+body.dark-mode .text-purple-900,
+body.dark-mode .text-purple-950,
+body.dark-mode .text-gray-950,
+body.dark-mode .text-gray-900,
+body.dark-mode .text-gray-800,
+body.dark-mode .text-zinc-900,
+body.dark-mode .text-zinc-950,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5 {
+  color: #F8FAFC !important;
+}
+
+body.dark-mode .text-slate-750,
+body.dark-mode .text-slate-650,
+body.dark-mode .text-slate-600,
+body.dark-mode .text-gray-750,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-650,
+body.dark-mode .text-gray-600,
+body.dark-mode span,
+body.dark-mode strong {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .text-slate-500,
+body.dark-mode .text-slate-400,
+body.dark-mode .text-gray-500,
+body.dark-mode .text-gray-400,
+body.dark-mode p,
+body.dark-mode label {
+  color: #94A3B8 !important;
+}
+
+body.dark-mode .text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+/* Header & Nav overrides */
+body.dark-mode header {
+  background-color: rgba(10, 10, 10, 0.5) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode header button span {
+  color: #F0F3FF !important;
+}
+
+body.dark-mode nav button {
+  color: #94A3B8 !important;
+  border-color: transparent !important;
+}
+
+body.dark-mode nav button:hover {
+  color: #F0F3FF !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode nav button.bg-white\/60 {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+}
+
+body.dark-mode footer {
+  background-color: rgba(10, 10, 10, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode footer span,
+body.dark-mode footer p {
+  color: #94A3B8 !important;
+}
+
+/* Interactive card structures */
+body.dark-mode .backdrop-blur-xl {
+  background-color: rgba(18, 18, 18, 0.72) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.dark-mode textarea,
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
+  background-color: #121212 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-mode textarea::placeholder,
+body.dark-mode input::placeholder {
+  color: #6B7280 !important;
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-white\/10,
+body.dark-mode .bg-white\/20,
+body.dark-mode .bg-white\/25,
+body.dark-mode .bg-white\/30,
+body.dark-mode .bg-white\/40,
+body.dark-mode .bg-white\/50,
+body.dark-mode .bg-white\/60,
+body.dark-mode .bg-white\/70,
+body.dark-mode .bg-white\/80,
+body.dark-mode .bg-white\/90,
+body.dark-mode .bg-white\/95 {
+  background-color: rgba(18, 18, 18, 0.75) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Override all violet and indigo colors to clean whites and grays */
+body.dark-mode .text-indigo-600,
+body.dark-mode .text-indigo-700,
+body.dark-mode .text-indigo-850 {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .bg-slate-50 {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  color: #CBD5E1 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark-mode .bg-slate-100 {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #E2E8F0 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Grayscale overlays for gradient buttons and branding icons */
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple,
+body.dark-mode button.bg-gradient-to-r {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple *,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple *,
+body.dark-mode button.bg-gradient-to-r * {
+  color: #000000 !important;
+}
+
+body.dark-mode button.bg-gradient-to-r:hover,
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple:hover,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple:hover {
+  background: #E2E8F0 !important;
+}
+
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple .bg-white/20,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple .bg-white/20 {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple svg,
+body.dark-mode .bg-gradient-to-tr.from-aurora-purple path,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple svg,
+body.dark-mode .bg-gradient-to-r.from-aurora-purple path {
+  stroke: #000000 !important;
+}
+
+/* Pricing cards visual updates */
+body.dark-mode .border-indigo-500,
+body.dark-mode .border-aurora-purple {
+  border-color: #FFFFFF !important;
+}
+
+body.dark-mode .text-indigo-500 {
+  color: #FFFFFF !important;
+}
+
+/* Active slider thumbs and indicators */
+body.dark-mode .border-indigo-200\/50,
+body.dark-mode .border-indigo-150 {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Range Inputs */
+body.dark-mode input[type="range"] {
+  accent-color: #FFFFFF !important;
+}
+
+/* Success labels and indicators - retain green with high-contrast safety tints */
+body.dark-mode .bg-emerald-50,
+body.dark-mode .bg-emerald-100,
+body.dark-mode .bg-emerald-500\/10 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #34D399 !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+body.dark-mode .text-emerald-700,
+body.dark-mode .text-emerald-600 {
+  color: #34D399 !important;
+}
+
+/* Google Stitch-style loading indicator animations */
+.ai-loading-animation {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  background: radial-gradient(circle at 30% 30%, rgba(100,66,214,0.85), rgba(236,72,153,0.7));
+  border-radius: 50%;
+  animation: breathe 2s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(100,66,214,0.5);
+  position: relative;
+}
+
+.ai-loading-animation::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6442D6, #EC4899);
+  filter: blur(8px);
+  opacity: 0.55;
+  animation: trail 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(100,66,214,0.4); }
+  50% { box-shadow: 0 0 24px rgba(100,66,214,0.85); }
+}
+
+@keyframes trail {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.22); }
+}
+
+/* Grayscale overrides for Stitch-style loading orb in dark-mode (Grayscale as per prompt) */
+body.dark-mode .ai-loading-animation {
+  background: radial-gradient(circle at 30% 30%, rgba(200,200,200,0.85), rgba(100,100,100,0.7)) !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+body.dark-mode .ai-loading-animation::after {
+  background: linear-gradient(135deg, #FFFFFF, #888888) !important;
+  opacity: 0.45;
+}
